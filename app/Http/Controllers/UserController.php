@@ -15,12 +15,12 @@ class UserController extends Controller
         // User Eloquent ORM https://laravel.com/docs/7.x/eloquent
 
         // method #2 in creating record
-        $data = [
-            'name' => 'jack',
-            'email' => 'jack@hotmail.com',
-            'password' => '123456', //udh bikin mutator to bcrypt this field
-            'email_verified_at' => date("Y/m/d"),
-        ];
+        // $data = [
+        //     'name' => 'jack',
+        //     'email' => 'jack@hotmail.com',
+        //     'password' => '123456', //udh bikin mutator to bcrypt this field
+        //     'email_verified_at' => date("Y/m/d"),
+        // ];
 
         // // using ::create() method - https://laravel.com/docs/7.x/eloquent#mass-assignment
         // User::create($data);
