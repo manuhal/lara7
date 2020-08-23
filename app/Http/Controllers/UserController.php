@@ -14,22 +14,22 @@ class UserController extends Controller
 
         // User Eloquent ORM https://laravel.com/docs/7.x/eloquent
 
-        // method #2
+        // method #2 in creating record
         $data = [
-            'name' => 'Zicy',
-            'email' => 'zicy@hotmail.com',
-            'password' => bcrypt('123456'), 
+            'name' => 'jack',
+            'email' => 'jack@hotmail.com',
+            'password' => '123456', //udh bikin mutator to bcrypt this field
             'email_verified_at' => date("Y/m/d"),
         ];
 
-        // using ::create() method - https://laravel.com/docs/7.x/eloquent#mass-assignment
-        User::create($data);
+        // // using ::create() method - https://laravel.com/docs/7.x/eloquent#mass-assignment
+        // User::create($data);
 
 
 
 
 
-        // method #1
+        // method #1 to create record
         // Create new record
         // $user = new User();        
         // $user->name = 'Olin';
@@ -44,7 +44,7 @@ class UserController extends Controller
         // User::find(2)->delete();
 
         // delete user without finding it first, use destroy, also can delete multiple ids
-        // User::destroy(1,2,3);
+        // User::destroy(4,5,6,7,8,9,12,13,14);
 
         // Update
         // User::where('id',5)->update(['name' => 'Olin (Manu\'s beloved wife)']);

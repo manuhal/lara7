@@ -39,6 +39,7 @@ class User extends Authenticatable
 
 
     /**
+     * test bikin $guarded
      * The attributes that are mass guarded.
      *
      * @var array
@@ -48,5 +49,18 @@ class User extends Authenticatable
     // ];
 
 
+    // bikin accessor, which mod the return data before displaying to public
+    // func name has to follow specifc rule getFieldNameAttribute()
+    public function getNameAttribute($name)
+    {   
+        return 'Hello my name is '. ucfirst($name);
+    }
+
+    // bikin mutator, which mutate/mod the data data saving to DB
+    // func name has to follow specifc rule setFieldNameAttribute()
+    public function setPasswordAttribute($pwd)
+    {
+        $this->attributes['password'] = bcrypt($pwd);        
+    }
 
 }
