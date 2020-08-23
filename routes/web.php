@@ -18,6 +18,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('/home', function () {
-    return view('welcome');
-});
+Route::get('/user', 'UserController@index');
+
+
