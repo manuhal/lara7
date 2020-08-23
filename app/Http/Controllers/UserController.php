@@ -14,6 +14,22 @@ class UserController extends Controller
 
         // User Eloquent ORM https://laravel.com/docs/7.x/eloquent
 
+        // method #2
+        $data = [
+            'name' => 'Zicy',
+            'email' => 'zicy@hotmail.com',
+            'password' => bcrypt('123456'), 
+            'email_verified_at' => date("Y/m/d"),
+        ];
+
+        // using ::create() method - https://laravel.com/docs/7.x/eloquent#mass-assignment
+        User::create($data);
+
+
+
+
+
+        // method #1
         // Create new record
         // $user = new User();        
         // $user->name = 'Olin';
@@ -32,7 +48,7 @@ class UserController extends Controller
 
         // Update
         // User::where('id',5)->update(['name' => 'Olin (Manu\'s beloved wife)']);
-        User::where('id',4)->update(['password' => bcrypt('12345abc')]);
+        // User::where('id',4)->update(['password' => bcrypt('12345abc')]);
 
         //return all user records
         return User::all();  
