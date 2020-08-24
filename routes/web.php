@@ -25,12 +25,19 @@ Route::view('/welcome','welcome');
 
 Route::get('/user', 'UserController@index');
 
-Route::post('/upload', function(Request $request){
+Route::post('/upload', function(Request $request){    
     
-    // $file = $request->file('avatar');
-    $file = $request->avatar;
-
-    dd($file); 
+    //check if user select image (avatar field is not empty)
+    if($request->hasFile('avatar')){
+        //store in the  public/images folder
+        $request->avatar->store('images','public');
+        // verify that there were no problems uploading the file
+        if ($request->avatar->isValid()) {
+            return 'image uploaded successfully';
+        }        
+    } else{
+        return 'please select your image';
+    }
 });
 
 
