@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function index ()
+    public function index()
     {
-
 
         // User Eloquent ORM https://laravel.com/docs/7.x/eloquent
 
@@ -25,13 +23,9 @@ class UserController extends Controller
         // // using ::create() method - https://laravel.com/docs/7.x/eloquent#mass-assignment
         // User::create($data);
 
-
-
-
-
         // method #1 to create record
         // Create new record
-        // $user = new User();        
+        // $user = new User();
         // $user->name = 'Olin';
         // $user->email = 'olin@mail.com';
         // $user->password = bcrypt('123456');
@@ -51,14 +45,10 @@ class UserController extends Controller
         // User::where('id',4)->update(['password' => bcrypt('12345abc')]);
 
         //return all user records
-        return User::all();  
-
-        
-        
+        return User::all();
 
         // dd($user);
 
-        
         // CRUD with DB facade
 
         // Create  new user
@@ -71,9 +61,37 @@ class UserController extends Controller
         // DB::delete('delete from users');
 
         // Retreive users
-        // $users = DB::select('select * from users');        
+        // $users = DB::select('select * from users');
         // return $users;
-         
+
         // return view('users');
+    }
+
+    public function uploadAvatar(Request $request)
+    {
+        //check if user select image (avatar field is not empty)
+        if ($request->hasFile('avatar')) {
+            
+            //get the filename            
+            //$filename = $request->file('avatar')->getClientOriginalName();
+            $filename = $request->avatar->getClientOriginalName();   
+
+            //store in the  public/images folder            
+            // $request->file('avatar')->storeAs('images', $filename,'public');
+            $request->avatar->storeAs('images', $filename,'public');
+
+            // verify that there were no problems uploading the file
+            if ($request->avatar->isValid()) {
+                //return 'image uploaded successfully';
+                //update user's record with the avatar data
+                // dd(auth()->user());
+                // User::find(1)->update(['avatar' => $filename])
+                auth()->user()->update(['avatar' => $filename]);                
+            }
+        } else {
+            return 'please select your image';
+        }
+        return redirect()->back();
+
     }
 }
