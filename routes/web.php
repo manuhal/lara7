@@ -1,5 +1,8 @@
 <?php
 
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,15 +17,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    //return 'APP_NAME = ' . env('APP_NAME') . '<br>DB_DATABASE = ' . env('DB_DATABASE') . '<br>';
+    return view('welcome');
 });
-
 
 Route::view('/welcome','welcome');
 
+Route::get('/user', 'UserController@index');
 
-Route::get('/users', 'UserController@index');
+Route::post('/upload', function(Request $request){
+    
+    // $file = $request->file('avatar');
+    $file = $request->avatar;
 
+    dd($file); 
+});
 
 
 Auth::routes();

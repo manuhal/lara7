@@ -16,8 +16,17 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+
+                <div class="card-body">
+                    <form action="/upload" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="avatar" id="avatar">
+                        <input type="submit" value="submit">                        
+                    </form>
+                
+                </div>
             </div>
-        </div>
+        </div>    
     </div>
 </div>
 @endsection
